@@ -15,7 +15,6 @@ public class RegistroUsuarioControlador {
 
     private UsuarioServicio usuarioServicio;
 
-    // Inyeccion de dependencias
     public RegistroUsuarioControlador(UsuarioServicio usuarioServicio) {
         super();
         this.usuarioServicio = usuarioServicio;

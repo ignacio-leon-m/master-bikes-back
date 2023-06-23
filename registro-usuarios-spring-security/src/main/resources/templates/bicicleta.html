@@ -39,43 +39,55 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div th:if=${param.exito}>
-                <div class="alert alert-info">Se ha registrado exitosamente a
-                    la aplicación
-                </div>
-            </div>
+            <h1>Registro de bicicletas</h1>
+            <br>
+            <form th:action="@{/bicicleta}" method="post" th:object="${bicicleta}">
+                <!-- Campos del formulario -->
 
-            <h1>Regístrate</h1>
-            <form th:action="@{/registro}" method="post" th:object="${usuario}">
                 <div class="form-group">
-                    <label class="control-label" for="nombre">Nombre : </label> <input
-                        id="nombre" type="text" class="form-control" th:field="*{nombre}"
-                        required autofocus="autofocus">
+                    <label class="control-label" for="marca">Marca : </label>
+                    <input id="marca" type="text" class="form-control" th:field="*{marca}" placeholder="Ingresar marca"
+                           required autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="apellido">Apellido : </label> <input
-                        id="apellido" class="form-control" th:field="*{apellido}"
-                        required autofocus="autofocus">
+                    <label class="control-label" for="modelo">Modelo : </label>
+                    <input id="modelo" type="text" class="form-control" th:field="*{modelo}"
+                           placeholder="Ingresar modelo" required autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="email">Email : </label> <input
-                        id="email" type="email" class="form-control" th:field="*{email}"
-                        required autofocus="autofocus">
+                    <label class="control-label" for="aro">Aro : </label>
+                    <input id="aro" type="text" class="form-control" th:field="*{aro}" placeholder="Ingresar aro"
+                           required autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label" for="password">Password : </label> <input
-                        type="password" id="password" class="form-control" th:field="*{password}"
-                        required autofocus="autofocus">
+                    <label class="control-label" for="tipo">Tipo : </label>
+                    <input id="tipo" type="text" class="form-control" th:field="*{tipo}" placeholder="Ingresar tipo"
+                           required autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Registrar</button>
-                    <span>Si estas registrado <a th:href="@{/login}">inicia sesión aqui</a></span>
+                    <label class="control-label" for="color">Color : </label>
+                    <input id="color" type="text" class="form-control" th:field="*{color}" placeholder="Ingresar color"
+                           required autofocus="autofocus">
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label" for="precio">Precio arriendo : </label>
+                    <input type="number" id="precio" class="form-control" th:field="*{precioArr}"
+                           placeholder="Ingresar precio de arriendo" required autofocus="autofocus">
+                </div>
+
+                <input type="hidden" th:field="*{estado}" th:value="#{'en bodega'}">
+    
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">Guardar modelo</button>
                 </div>
             </form>
+
 
         </div>
     </div>

@@ -1,5 +1,6 @@
 package com.registro.usuarios.modelo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -34,4 +35,15 @@ public class Bicicleta {
     @OneToMany
     @JoinColumn(name = "bicicleta_id")
     private List<Arriendo> arriendos;
+
+    public Bicicleta(String marca, String modelo, int aro, String tipo, String color, String estado, String precioArr) {
+        this.marca = marca;
+        this.modelo = modelo;
+        this.aro = aro;
+        this.tipo = tipo;
+        this.color = color;
+        this.estado = estado;
+        this.precioArr = new BigDecimal(precioArr);
+    }
+
 }

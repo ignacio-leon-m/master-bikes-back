@@ -15,16 +15,20 @@ public class RegistroUsuarioControlador {
 
     private UsuarioServicio usuarioServicio;
 
+    // Inyeccion de dependencias
     public RegistroUsuarioControlador(UsuarioServicio usuarioServicio) {
         super();
         this.usuarioServicio = usuarioServicio;
     }
 
+    // Métodos HTTP
+    // Éste método sirve para mostrar el formulario de registro de usuarios
     @ModelAttribute("usuario")
     public UsuarioRegistroDTO retornarNuevoUsuarioRegistroDTO() {
         return new UsuarioRegistroDTO();
     }
 
+    // Éste método sirve para mostrar el formulario de registro de usuarios
     @GetMapping
     public String mostrarFormularioDeRegistro() {
         return "registro";

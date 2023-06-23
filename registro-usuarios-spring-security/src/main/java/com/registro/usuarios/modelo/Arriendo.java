@@ -34,4 +34,20 @@ public class Arriendo {
     @ManyToOne
     @JoinColumn(name = "bicicleta_id", nullable = false)
     private Bicicleta bicicleta;
+
+
+    public Arriendo() {
+    }
+
+    public Arriendo(LocalDate fechaIni, LocalDate fechaTer, String formaPago, String detallesPago, Boolean garantia, int montoGarantia, Usuario usuario, Bicicleta bicicleta) {
+        this.fechaIni = fechaIni;
+        this.fechaTer = fechaTer;
+        this.formaPago = formaPago;
+        this.detallesPago = detallesPago;
+        this.garantia = garantia;
+        this.montoGarantia = montoGarantia;
+        this.usuario = usuario;
+        this.bicicleta = bicicleta;
+    }
 }
+

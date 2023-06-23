@@ -3,7 +3,6 @@ package com.registro.usuarios.servicio;
 import com.registro.usuarios.dto.BicicletaRegistroDTO;
 import com.registro.usuarios.modelo.Bicicleta;
 import com.registro.usuarios.repositorio.BicicletaRepositorio;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,11 +12,11 @@ import java.util.List;
  */
 
 @Service
-public class BiciletaServicioImpl implements BicicletaServicio {
+public class BicicletaServicioImpl implements BicicletaServicio {
 
     private BicicletaRepositorio bicicletaRepositorio;
 
-    public BiciletaServicioImpl(BicicletaRepositorio bicicletaRepositorio) {
+    public BicicletaServicioImpl(BicicletaRepositorio bicicletaRepositorio) {
         super();
         this.bicicletaRepositorio = bicicletaRepositorio;
     }
@@ -39,8 +38,9 @@ public class BiciletaServicioImpl implements BicicletaServicio {
 
     @Override
     public List<Bicicleta> listarBicicletas() {
-        return null;
+        return bicicletaRepositorio.findAll();
     }
+
 
     @Override
     public Bicicleta buscarBicicleta(Long idBicicleta) {

@@ -62,10 +62,14 @@
                            required autofocus="autofocus">
                 </div>
 
+
                 <div class="form-group">
-                    <label class="control-label" for="tipo">Tipo : </label>
-                    <input id="tipo" type="text" class="form-control" th:field="*{tipo}" placeholder="Ingresar tipo"
-                           required autofocus="autofocus">
+                    <label class="control-label" for="tipo">Tipo de Bicicleta: </label>
+                    <select class="form-control" id="tipo" th:field="*{tipo}" required autofocus="autofocus">
+                        <option value="mountain">Mountain Bike</option>
+                        <option value="ruta">Bicicleta de Ruta</option>
+                        <option value="urbana">Bicicleta Urbana</option>
+                    </select>
                 </div>
 
                 <div class="form-group">

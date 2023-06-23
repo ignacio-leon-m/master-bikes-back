@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="es">
 <head>
     <meta charset="utf-8">
     <title>Inicio</title>
@@ -53,24 +53,42 @@
 
     <br> <br>
 
-    <table class="table table-striped table-bordered">
-        <thead class="table-dark">
+    <table class="table">
+        <thead>
         <tr>
             <th>ID</th>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Aro</th>
+            <th>Tipo</th>
+            <th>Color</th>
+            <th>Estado</th>
+            <th>Precio Arriendo</th>
+            <th>Acción</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="usuario : ${usuarios}">
-            <td th:text="${usuario.id}">ID</td>
-            <td th:text="${usuario.nombre}">ID</td>
-            <td th:text="${usuario.apellido}">ID</td>
-            <td th:text="${usuario.email}">ID</td>
+        <!-- Aquí se generan las filas de la tabla -->
+        <tr th:each="bicicleta : ${bicicletas}">
+            <td th:text="${bicicleta.idBicicleta}"></td>
+            <td th:text="${bicicleta.marca}"></td>
+            <td th:text="${bicicleta.modelo}"></td>
+            <td th:text="${bicicleta.aro}"></td>
+            <td th:text="${bicicleta.tipo}"></td>
+            <td th:text="${bicicleta.color}"></td>
+            <td th:text="${bicicleta.estado}"></td>
+            <td th:text="${bicicleta.precioArr}"></td>
+            <td>
+                <button th:if="${bicicleta.estado == 'Disponible'}" class="btn btn-primary"
+                        th:attr="data-bicicleta-id=${bicicleta.idBicicleta}" onclick="arrendarBicicleta(this)">Arrendar
+                </button>
+                <button th:if="${bicicleta.estado == 'Arrendada'}" class="btn btn-secondary" disabled>Arrendada</button>
+            </td>
         </tr>
         </tbody>
     </table>
+
+
 </div>
 
 

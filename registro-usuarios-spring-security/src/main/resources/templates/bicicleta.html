@@ -80,8 +80,13 @@
                            placeholder="Ingresar precio de arriendo" required autofocus="autofocus">
                 </div>
 
-                <input type="hidden" th:field="*{estado}" th:value="#{'en bodega'}">
-    
+                <input
+                        type="hidden"
+                        id="estado"
+                        th:field="*{estado}"
+                        th:value="#{'Disponible'}"
+                >
+
 
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Guardar modelo</button>

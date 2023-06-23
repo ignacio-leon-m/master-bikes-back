@@ -29,6 +29,7 @@ public class BicicletaController {
 
     @PostMapping
     public String registrarBicicleta(@ModelAttribute("bicicleta") BicicletaRegistroDTO registroDTO) {
+        registroDTO.setEstado("Disponible");
         bicicletaServicio.guardarBicicleta(registroDTO);
         return "redirect:/bicicleta?exito";
     }

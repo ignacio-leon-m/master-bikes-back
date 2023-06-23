@@ -1,6 +1,5 @@
 package com.registro.usuarios.modelo;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -46,4 +45,7 @@ public class Bicicleta {
         this.precioArr = new BigDecimal(precioArr);
     }
 
+    public Bicicleta() {
+
+    }
 }

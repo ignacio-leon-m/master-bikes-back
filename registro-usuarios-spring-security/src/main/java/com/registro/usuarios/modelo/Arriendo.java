@@ -22,6 +22,8 @@ public class Arriendo {
     private LocalDate fechaTer;
     @Column(name = "forma_pago", nullable = false)
     private String formaPago;
+    @Column(name = "detalles_pago")
+    private String detallesPago;
     @Column(name = "garantia", nullable = false)
     private Boolean garantia;
     @Column(name = "monto_gar", nullable = false)
@@ -32,5 +34,4 @@ public class Arriendo {
     @ManyToOne
     @JoinColumn(name = "bicicleta_id", nullable = false)
     private Bicicleta bicicleta;
-
 }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/bicicleta")
 public class BicicletaController {
 
-    private BicicletaServicio bicicletaServicio;
+    private final BicicletaServicio bicicletaServicio;
 
     public BicicletaController(BicicletaServicio bicicletaServicio) {
         super();

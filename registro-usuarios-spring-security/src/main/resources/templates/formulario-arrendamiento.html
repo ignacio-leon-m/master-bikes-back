@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Arrendamiento</title>
+</head>
+<body>
+<h1>Formulario de Arrendamiento</h1>
+
+<form action="/arriendo" method="post">
+    <input type="hidden" name="bicicletaId" th:value="${bicicleta.idBicicleta}"/>
+
+    <!-- Aquí puedes agregar los campos del formulario de arrendamiento -->
+    <!-- Por ejemplo: -->
+    <label for="fechaIni">Fecha de Inicio:</label>
+    <input type="date" id="fechaIni" name="fechaIni" required/>
+
+    <label for="fechaTer">Fecha de Término:</label>
+    <input type="date" id="fechaTer" name="fechaTer" required/>
+
+    <label for="formaPago">Forma de Pago:</label>
+    <select id="formaPago" name="formaPago" required>
+        <option value="Efectivo">Efectivo</option>
+        <option value="Tarjeta">Tarjeta</option>
+        <option value="Transferencia">Transferencia</option>
+    </select>
+
+    <!-- Agrega más campos según tus necesidades -->
+
+    <button type="submit" class="btn btn-primary">Confirmar Arriendo</button>
+</form>
+
+<!--
+<script>
+    function validarFechas() {
+        var fechaInicio = document.getElementById("fechaIni").value;
+        var fechaTermino = document.getElementById("fechaTer").value;
+
+        if (fechaInicio >= fechaTermino) {
+            alert("La fecha de inicio debe ser menor a la fecha de término");
+            return false; // Evita que el formulario se envíe
+        }
+
+        return true; // Permite que el formulario se envíe
+    }
+</script> -->
+</body>
+</html>

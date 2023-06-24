@@ -79,8 +79,13 @@
             <td th:text="${bicicleta.estado}"></td>
             <td th:text="${bicicleta.precioArr}"></td>
             <td>
-                <button th:if="${bicicleta.estado == 'Disponible'}" class="btn btn-primary"
-                        th:attr="data-bicicleta-id=${bicicleta.idBicicleta}" onclick="arrendarBicicleta(this)">Arrendar
+                <button
+                        th:if="${bicicleta.estado == 'Disponible'}"
+                        class="btn btn-primary"
+                        id="arrendar-btn"
+                        th:attr="data-bicicleta-id=${bicicleta.idBicicleta}"
+                        onclick="redireccionarFormularioArrendamiento(this)"
+                >Arrendar
                 </button>
                 <button th:if="${bicicleta.estado == 'Arrendada'}" class="btn btn-secondary" disabled>Arrendada</button>
             </td>
@@ -90,6 +95,14 @@
 
 
 </div>
+
+
+<script>
+    function redireccionarFormularioArrendamiento(button) {
+        var bicicletaId = button.getAttribute("data-bicicleta-id");
+        window.location.href = "/arriendo/seleccionar/" + bicicletaId;
+    }
+</script>
 
 
 <!-- Latest compiled and minified JavaScript -->

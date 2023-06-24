@@ -44,7 +44,8 @@ public class BicicletaServicioImpl implements BicicletaServicio {
 
     @Override
     public Bicicleta buscarBicicleta(Long idBicicleta) {
-        return null;
+        return bicicletaRepositorio.findById(idBicicleta)
+                .orElseThrow(() -> new RuntimeException("Bicicleta no encontrada"));
     }
 
     @Override

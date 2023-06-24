@@ -48,4 +48,76 @@ public class Bicicleta {
     public Bicicleta() {
 
     }
+
+    public Long getIdBicicleta() {
+        return idBicicleta;
+    }
+
+    public void setIdBicicleta(Long idBicicleta) {
+        this.idBicicleta = idBicicleta;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAro() {
+        return aro;
+    }
+
+    public void setAro(int aro) {
+        this.aro = aro;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public BigDecimal getPrecioArr() {
+        return precioArr;
+    }
+
+    public void setPrecioArr(BigDecimal precioArr) {
+        this.precioArr = precioArr;
+    }
+
+    public List<Arriendo> getArriendos() {
+        return arriendos;
+    }
+
+    public void setArriendos(List<Arriendo> arriendos) {
+        this.arriendos = arriendos;
+    }
 }

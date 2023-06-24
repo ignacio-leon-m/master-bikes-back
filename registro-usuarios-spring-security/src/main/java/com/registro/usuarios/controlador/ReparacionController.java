@@ -39,7 +39,12 @@ public class ReparacionController {
         //Obtener id del usuario logueado
         String nombreUsuario = obtenerNombreUsuarioLogueado(principal);
         Long usuarioId = usuarioServicio.buscarIdPorUsername(nombreUsuario);
-        model.addAttribute("usuarioId", usuarioId);
+
+        // Crear una nueva instancia de ReparacionDTO y establecer el usuarioId
+        ReparacionDTO reparacionDTO = new ReparacionDTO();
+        reparacionDTO.setUsuarioId(usuarioId);
+
+        model.addAttribute("reparacion", reparacionDTO);
 
         return "reparacion";
     }
@@ -50,7 +55,7 @@ public class ReparacionController {
     }
 
     @PostMapping
-    public String registrarArriendo(@ModelAttribute("reparacion") ReparacionDTO reparacionDTO) {
+    public String registrarReparacion(@ModelAttribute("reparacion") ReparacionDTO reparacionDTO) {
         reparacionServicio.repararBicicleta(reparacionDTO);
 
         return "redirect:/reparacion";

@@ -14,4 +14,6 @@ public interface UsuarioServicio extends UserDetailsService {
 
     public List<Usuario> listarUsuarios();
 
+    public Long buscarIdPorUsername(String username);
+
 }

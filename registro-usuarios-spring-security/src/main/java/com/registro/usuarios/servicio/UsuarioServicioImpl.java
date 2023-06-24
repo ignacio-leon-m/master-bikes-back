@@ -61,4 +61,11 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public List<Usuario> listarUsuarios() {
         return usuarioRepositorio.findAll();
     }
+
+    @Override
+    public Long buscarIdPorUsername(String username) {
+        Usuario usuario = usuarioRepositorio.findByEmail(username);
+        Long userId = usuario.getId();
+        return userId;
+    }
 }

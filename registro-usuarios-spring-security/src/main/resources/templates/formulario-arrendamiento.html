@@ -8,7 +8,7 @@
 <body>
 <h1>Formulario de Arrendamiento</h1>
 
-<form action="/arriendo" method="post">
+<form th:action="@{/arriendo}" th:object="${arriendo}" method="post">
     <input type="hidden" name="bicicletaId" th:value="${bicicleta.idBicicleta}"/>
 
     <!-- Aquí puedes agregar los campos del formulario de arrendamiento -->
@@ -26,8 +26,7 @@
         <option value="Transferencia">Transferencia</option>
     </select>
 
-    <!-- Agrega más campos según tus necesidades -->
-
+    <input type="hidden" name="usuarioId" th:value="${usuarioId}"/>
     <button type="submit" class="btn btn-primary">Confirmar Arriendo</button>
 </form>
 

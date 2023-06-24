@@ -6,8 +6,8 @@ import java.time.LocalDate;
  * Created by ignac on 23-06-2023.
  */
 public class ArriendoDTO {
-    private LocalDate fechaIni;
-    private LocalDate fechaTer;
+    private String fechaIni;
+    private String fechaTer;
     private String formaPago;
     private String detallesPago;
     private Boolean garantia;
@@ -18,7 +18,7 @@ public class ArriendoDTO {
     public ArriendoDTO() {
     }
 
-    public ArriendoDTO(LocalDate fechaIni, LocalDate fechaTer, String formaPago, String detallesPago, Boolean garantia, int montoGarantia, Long bicicletaId, Long usuarioId) {
+    public ArriendoDTO(String fechaIni, String fechaTer, String formaPago, String detallesPago, Boolean garantia, int montoGarantia, Long bicicletaId, Long usuarioId) {
         this.fechaIni = fechaIni;
         this.fechaTer = fechaTer;
         this.formaPago = formaPago;
@@ -29,19 +29,19 @@ public class ArriendoDTO {
         this.usuarioId = usuarioId;
     }
 
-    public LocalDate getFechaIni() {
+    public String getFechaIni() {
         return fechaIni;
     }
 
-    public void setFechaIni(LocalDate fechaIni) {
+    public void setFechaIni(String fechaIni) {
         this.fechaIni = fechaIni;
     }
 
-    public LocalDate getFechaTer() {
+    public String getFechaTer() {
         return fechaTer;
     }
 
-    public void setFechaTer(LocalDate fechaTer) {
+    public void setFechaTer(String fechaTer) {
         this.fechaTer = fechaTer;
     }
 

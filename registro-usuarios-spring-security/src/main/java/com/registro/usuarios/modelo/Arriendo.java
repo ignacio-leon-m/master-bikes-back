@@ -17,9 +17,9 @@ public class Arriendo {
     @Column(name = "id_arriendo")
     private Long idArriendo;
     @Column(name = "fecha_ini", nullable = false)
-    private LocalDate fechaIni;
+    private String fechaIni;
     @Column(name = "fecha_ter", nullable = false)
-    private LocalDate fechaTer;
+    private String fechaTer;
     @Column(name = "forma_pago", nullable = false)
     private String formaPago;
     @Column(name = "detalles_pago")
@@ -39,7 +39,7 @@ public class Arriendo {
     public Arriendo() {
     }
 
-    public Arriendo(LocalDate fechaIni, LocalDate fechaTer, String formaPago, String detallesPago, Boolean garantia, int montoGarantia, Usuario usuario, Bicicleta bicicleta) {
+    public Arriendo(String fechaIni, String fechaTer, String formaPago, String detallesPago, Boolean garantia, int montoGarantia, Usuario usuario, Bicicleta bicicleta) {
         this.fechaIni = fechaIni;
         this.fechaTer = fechaTer;
         this.formaPago = formaPago;

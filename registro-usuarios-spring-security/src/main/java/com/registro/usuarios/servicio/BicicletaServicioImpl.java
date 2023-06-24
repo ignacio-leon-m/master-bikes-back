@@ -55,6 +55,6 @@ public class BicicletaServicioImpl implements BicicletaServicio {
 
     @Override
     public Bicicleta actualizarBicicleta(Bicicleta bicicleta) {
-        return null;
+        return bicicletaRepositorio.save(bicicleta);
     }
 }

@@ -16,4 +16,6 @@ public interface UsuarioServicio extends UserDetailsService {
 
     public Long buscarIdPorUsername(String username);
 
+    public Usuario buscarUsuarioPorId(Long idUsuario);
+
 }

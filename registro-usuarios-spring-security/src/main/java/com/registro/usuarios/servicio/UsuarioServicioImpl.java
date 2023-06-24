@@ -64,8 +64,12 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public Long buscarIdPorUsername(String username) {
-        Usuario usuario = usuarioRepositorio.findByEmail(username);
-        Long userId = usuario.getId();
-        return userId;
+        return usuarioRepositorio.findByEmail(username).getId();
+    }
+
+    @Override
+    public Usuario buscarUsuarioPorId(Long idUsuario) {
+        return usuarioRepositorio.findById(idUsuario)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
     }
 }

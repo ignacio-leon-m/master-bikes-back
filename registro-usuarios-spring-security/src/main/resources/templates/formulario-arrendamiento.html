@@ -7,17 +7,24 @@
 </head>
 <body>
 <h1>Formulario de Arrendamiento</h1>
+<!-- Otros campos del formulario -->
+<p>Bicicleta seleccionada: <span th:text="${bicicleta.idBicicleta}"></span></p>
+<p>Usuario seleccionado: <span th:text="${usuario.getEmail()}"></span></p>
+<p></p>
+
 
 <form th:action="@{/arriendo}" th:object="${arriendo}" method="post">
     <input type="hidden" name="bicicletaId" th:value="${bicicleta.idBicicleta}"/>
+    <input type="hidden" name="usuarioId" th:value="${usuario.id}"/>
 
     <!-- Aquí puedes agregar los campos del formulario de arrendamiento -->
     <!-- Por ejemplo: -->
     <label for="fechaIni">Fecha de Inicio:</label>
-    <input type="date" id="fechaIni" name="fechaIni" required/>
+    <input type="date" id="fechaIni" name="fechaIni" required pattern="\d{4}-\d{2}-\d{2}"/>
 
     <label for="fechaTer">Fecha de Término:</label>
-    <input type="date" id="fechaTer" name="fechaTer" required/>
+    <input type="date" id="fechaTer" name="fechaTer" required pattern="\d{4}-\d{2}-\d{2}"/>
+
 
     <label for="formaPago">Forma de Pago:</label>
     <select id="formaPago" name="formaPago" required>
@@ -26,23 +33,18 @@
         <option value="Transferencia">Transferencia</option>
     </select>
 
-    <input type="hidden" name="usuarioId" th:value="${usuarioId}"/>
+    <label for="detallesPago">Detalles de Pago:</label>
+    <input type="text" id="detallesPago" name="detallesPago" required/>
+
+    <label for="garantia">Garantía:</label>
+    <input type="checkbox" id="garantia" name="garantia"/>
+
+    <label for="montoGarantia">Monto de Garantía:</label>
+    <input type="number" id="montoGarantia" name="montoGarantia" required/>
+
+
     <button type="submit" class="btn btn-primary">Confirmar Arriendo</button>
 </form>
 
-<!--
-<script>
-    function validarFechas() {
-        var fechaInicio = document.getElementById("fechaIni").value;
-        var fechaTermino = document.getElementById("fechaTer").value;
-
-        if (fechaInicio >= fechaTermino) {
-            alert("La fecha de inicio debe ser menor a la fecha de término");
-            return false; // Evita que el formulario se envíe
-        }
-
-        return true; // Permite que el formulario se envíe
-    }
-</script> -->
 </body>
 </html>

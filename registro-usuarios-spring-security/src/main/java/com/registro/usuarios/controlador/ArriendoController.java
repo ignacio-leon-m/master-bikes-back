@@ -2,6 +2,7 @@ package com.registro.usuarios.controlador;
 
 import com.registro.usuarios.dto.ArriendoDTO;
 import com.registro.usuarios.modelo.Bicicleta;
+import com.registro.usuarios.modelo.Usuario;
 import com.registro.usuarios.servicio.ArriendoServicio;
 import com.registro.usuarios.servicio.BicicletaServicio;
 import com.registro.usuarios.servicio.UsuarioServicio;
@@ -11,9 +12,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 /**
@@ -56,40 +60,31 @@ public class ArriendoController {
 
     private String obtenerNombreUsuarioLogueado(Principal principal) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String nombreUsuario = auth.getName();
-        return nombreUsuario;
+        return auth.getName();
     }
 
     //Éste método recibe los datos del formulario de arriendo
     @PostMapping
-    public String registrarArriendo(@ModelAttribute("arriendo") ArriendoDTO registroDTO, BindingResult result) {
-        if (result.hasErrors()) {
-            // Manejar los errores de validación
-            return "formulario-arrendamiento";
-        }
-
-        LocalDate fechaInicio = registroDTO.getFechaIni();
-        LocalDate fechaTermino = registroDTO.getFechaTer();
-
-        if (fechaInicio.isAfter(fechaTermino)) {
-            result.rejectValue("fechaIni", "error.fechaIni", "La fecha de inicio debe ser menor a la fecha de término");
-            return "formulario-arrendamiento";
-        }
+    public String registrarArriendo(@ModelAttribute("arriendo") ArriendoDTO registroDTO) {
 
         arriendoServicio.arrendarBicicleta(registroDTO);
         Bicicleta bicicleta = bicicletaServicio.buscarBicicleta(registroDTO.getBicicletaId());
         bicicleta.setEstado("Arrendada");
         bicicletaServicio.actualizarBicicleta(bicicleta);
+        return "redirect:/arriendo";
 
-        return "redirect:/arriendo?exito";
     }
 
     //Éste método muestra el formulario de arriendo
     @GetMapping("/seleccionar/{bicicletaId}")
-    public String seleccionarBicicleta(@PathVariable Long bicicletaId, Model model) {
+    public String seleccionarBicicleta(@PathVariable Long bicicletaId, Model model, Principal principal) {
         Bicicleta bicicleta = bicicletaServicio.buscarBicicleta(bicicletaId);
+        String nombreUsuario = principal.getName();
+        Long usuarioId = usuarioServicio.buscarIdPorUsername(nombreUsuario);
+        Usuario usuario = usuarioServicio.buscarUsuarioPorId(usuarioId);
 
         model.addAttribute("bicicleta", bicicleta);
+        model.addAttribute("usuario", usuario);
         return "formulario-arrendamiento";
     }
 

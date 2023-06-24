@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <title>Inicio</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+          crossorigin="anonymous">
 </head>
 <body>
 
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">Registro e
+                inicio de sesión</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Cerrar
+                    sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+
+<div class="container">
+    <h1>Arriendo de Bicicletas</h1>
+    <br>
+    <h4>
+        Bienvenido <span sec:authentication="principal.username"></span>
+    </h4>
+
+    <br> <br>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Aro</th>
+            <th>Tipo</th>
+            <th>Color</th>
+            <th>Estado</th>
+            <th>Precio Arriendo</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Aquí se generan las filas de la tabla -->
+        <tr th:each="bicicleta : ${bicicletas}">
+            <td th:text="${bicicleta.idBicicleta}"></td>
+            <td th:text="${bicicleta.marca}"></td>
+            <td th:text="${bicicleta.modelo}"></td>
+            <td th:text="${bicicleta.aro}"></td>
+            <td th:text="${bicicleta.tipo}"></td>
+            <td th:text="${bicicleta.color}"></td>
+            <td th:text="${bicicleta.estado}"></td>
+            <td th:text="${bicicleta.precioArr}"></td>
+            <td>
+                <button
+                        th:if="${bicicleta.estado == 'Disponible'}"
+                        class="btn btn-primary"
+                        id="arrendar-btn"
+                        th:attr="data-bicicleta-id=${bicicleta.idBicicleta}"
+                        onclick="redireccionarFormularioArrendamiento(this)"
+                >Arrendar
+                </button>
+                <button th:if="${bicicleta.estado == 'Arrendada'}" class="btn btn-secondary" disabled>Arrendada</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+
+<script>
+    function redireccionarFormularioArrendamiento(button) {
+        var bicicletaId = button.getAttribute("data-bicicleta-id");
+        window.location.href = "/arriendo/seleccionar/" + bicicletaId;
+    }
+</script>
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
 </html>

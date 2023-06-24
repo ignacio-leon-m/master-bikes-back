@@ -14,18 +14,15 @@ public class Reparacion {
     @Column(name = "id_rep")
     private Long idReparacion;
     @Column(name = "fecha_ingreso", nullable = false)
-    private LocalDate fechaIng;
+    private String fechaIng;
     @Column(name = "descripcion", nullable = false)
     private String descripcion;
     @Column(name = "estado", nullable = false)
     private String estado;
     @Column(name = "fecha_entrega", nullable = false)
-    private LocalDate fechaEntrega;
+    private String fechaEntrega;
     @ManyToOne
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
-    @ManyToOne
-    @JoinColumn(name = "bicicleta_id", nullable = false)
-    private Bicicleta bicicleta;
 
 }

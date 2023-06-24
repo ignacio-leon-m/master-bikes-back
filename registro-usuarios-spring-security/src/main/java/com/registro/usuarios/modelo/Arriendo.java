@@ -3,7 +3,6 @@ package com.registro.usuarios.modelo;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 /**
  * Created by ignac on 21-06-2023.

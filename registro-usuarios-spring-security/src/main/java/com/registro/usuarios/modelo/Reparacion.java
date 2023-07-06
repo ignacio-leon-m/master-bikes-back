@@ -1,11 +1,14 @@
 package com.registro.usuarios.modelo;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "reparacion")
 public class Reparacion {
@@ -21,7 +24,7 @@ public class Reparacion {
     private String estado;
     @Column(name = "fecha_entrega", nullable = false)
     private String fechaEntrega;
-    @ManyToOne
+    @ManyToOne // Muchas reparaciones pueden ser realizadas por un usuario
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 

@@ -13,10 +13,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReparacionServicioImpl implements ReparacionServicio {
+
     private final ReparacionRepositorio reparacionRepositorio;
     private final UsuarioRepositorio usuarioRepositorio;
 
-    public ReparacionServicioImpl(ReparacionRepositorio reparacionRepositorio, UsuarioRepositorio usuarioRepositorio) {
+    ReparacionServicioImpl(ReparacionRepositorio reparacionRepositorio, UsuarioRepositorio usuarioRepositorio) {
         super();
         this.reparacionRepositorio = reparacionRepositorio;
         this.usuarioRepositorio = usuarioRepositorio;
@@ -33,7 +34,7 @@ public class ReparacionServicioImpl implements ReparacionServicio {
         reparacion.setUsuario(usuario);
         reparacion.setDescripcion(reparacionDTO.getDescripcion());
         reparacion.setEstado(reparacionDTO.getEstado());
-        reparacion.setFechaIng(reparacion.getFechaIng());
+        reparacion.setFechaIng(reparacionDTO.getFechaIng());
         reparacion.setFechaEntrega(reparacionDTO.getFechaEntrega());
 
         return reparacionRepositorio.save(reparacion);

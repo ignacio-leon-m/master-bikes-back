@@ -12,8 +12,8 @@ public class ArriendoDTO {
     private String detallesPago;
     private Boolean garantia;
     private int montoGarantia;
-    private Long bicicletaId; // ID de la bicicleta seleccionada por el cliente
-    private Long usuarioId; // ID del usuario que arrienda la bicicleta
+    private Long bicicletaId; // Id de la bicicleta seleccionada por el cliente
+    private Long usuarioId; // Id del usuario que arrienda la bicicleta
 
     public ArriendoDTO() {
     }

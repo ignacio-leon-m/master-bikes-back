@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Reportes</title>
@@ -35,5 +35,14 @@
   </tr>
   </tbody>
 </table>
+<br>
+  <form
+          th:action="@{/reportes/generar-pdf}"
+          th:method="post"
+          target="_blank"
+  >
+    <button type="submit">Generar PDF</button>
+  </form>
+
 </body>
 </html>

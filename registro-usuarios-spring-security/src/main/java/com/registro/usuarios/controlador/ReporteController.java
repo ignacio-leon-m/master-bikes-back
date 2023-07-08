@@ -45,7 +45,8 @@ public class ReporteController {
         //generar PDF
         Document document = new Document();
         try {
-            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("arriendos.pdf"));
+            String rutaArchivoPDF = "C:/Informes/arriendos.pdf";
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(rutaArchivoPDF));
             document.open();
             PdfPTable table = new PdfPTable(9); // 8 columnas
             //Agregar encabezados

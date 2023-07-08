@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.swing.text.StyleConstants;
 import java.io.FileOutputStream;
@@ -36,6 +38,53 @@ public class ReporteController {
         return "reportes";
     }
 
+    @PostMapping("/generar-pdf")
+    public String generarPDF(RedirectAttributes redirectAttributes) {
+        //obtener todos los arriendos
+        List<Arriendo> arriendos = arriendoRepositorio.findAll();
+
+        //generar PDF
+        Document document = new Document();
+        try {
+            String rutaArchivoPDF = "C:/Informes/arriendos.pdf";
+            PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream(rutaArchivoPDF));
+            document.open();
+            PdfPTable table = new PdfPTable(9); // 8 columnas
+            //Agregar encabezados
+            String[] headers = {"ID", "Fecha Inicio", "Fecha Termino", "Forma pago", "Detalle pago", "Garantia",
+                    "Monto Garantia", "Usuario", "Bicicleta"};
+            Font headerFont = new Font(Font.FontFamily.HELVETICA, 12, Font.BOLD);
+            for (String header : headers) {
+                PdfPCell cell = new PdfPCell(new Phrase(header, headerFont));
+                cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+                table.addCell(cell);
+            }
+            //Agregar filas
+            Font rowFont = FontFactory.getFont(FontFactory.HELVETICA);
+            for (Arriendo arriendo : arriendos) {
+                table.addCell(new PdfPCell(new Phrase(arriendo.getIdArriendo().toString(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getFechaIni(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getFechaTer(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getFormaPago(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getDetallesPago(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(String.valueOf(arriendo.getGarantia()), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(String.valueOf(arriendo.getMontoGarantia()), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getUsuario().getNombre(), rowFont)));
+                table.addCell(new PdfPCell(new Phrase(arriendo.getBicicleta().getMarca(), rowFont)));
+            }
+            document.add(table);
+            document.close();
+            writer.close();
+            // Agrega el mensaje de éxito al modelo
+            redirectAttributes.addFlashAttribute("mensaje", "PDF generado correctamente");
+            return "redirect:/reportes";
+        }catch (DocumentException | IOException e){
+            e.printStackTrace();
+            return "redirect:/reportes";
+        }
+    }
+
+    /*
     //todo: Agregar método para generar un PDF con todos los arriendos
     @PostMapping("/generar-pdf")
     public ResponseEntity<String> generarPDF() {
@@ -80,4 +129,5 @@ public class ReporteController {
             return ResponseEntity.badRequest().build();
         }
     }
+    */
 }

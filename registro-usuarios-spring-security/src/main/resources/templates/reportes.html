@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>Reportes</h1>
+<div th:if="${mensaje}">
+  <p th:utext="${mensaje}"></p>
+</div>
 <h4>Reporte de arriendo de bicicletas</h4>
 <table class="table">
   <thead>
@@ -39,7 +42,6 @@
   <form
           th:action="@{/reportes/generar-pdf}"
           th:method="post"
-          target="_blank"
   >
     <button type="submit">Generar PDF</button>
   </form>

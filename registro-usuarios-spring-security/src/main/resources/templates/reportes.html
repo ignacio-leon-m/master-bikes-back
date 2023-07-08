@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Reportes</title>
+</head>
+<body>
+<table class="table">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Fecha Inicio</th>
+    <th>Fecha Termino</th>
+    <th>Forma de Pago</th>
+    <th>Detalles de Pago</th>
+    <th>Garantía</th>
+    <th>Monto Garantía</th>
+    <th>Usuario</th>
+    <th>Bicicleta</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="arriendo : ${arriendos}">
+    <td th:text="${arriendo.idArriendo}"></td>
+    <td th:text="${arriendo.fechaIni}"></td>
+    <td th:text="${arriendo.fechaTer}"></td>
+    <td th:text="${arriendo.formaPago}"></td>
+    <td th:text="${arriendo.detallesPago}"></td>
+    <td th:text="${arriendo.garantia}"></td>
+    <td th:text="${arriendo.montoGarantia}"></td>
+    <td th:text="${arriendo.usuario.nombre}"></td>
+    <td th:text="${arriendo.bicicleta.modelo}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

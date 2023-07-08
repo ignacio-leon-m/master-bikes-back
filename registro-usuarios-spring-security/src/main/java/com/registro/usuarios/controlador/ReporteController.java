@@ -7,16 +7,13 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.registro.usuarios.modelo.Arriendo;
 import com.registro.usuarios.repositorio.ArriendoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
-import javax.swing.text.StyleConstants;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;

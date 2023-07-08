@@ -1,5 +1,6 @@
 package com.registro.usuarios.controlador;
 
+import com.registro.usuarios.servicio.EmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +16,12 @@ import com.registro.usuarios.servicio.UsuarioServicio;
 public class RegistroUsuarioControlador {
 
     private UsuarioServicio usuarioServicio;
+    private EmailService emailService;
 
-    public RegistroUsuarioControlador(UsuarioServicio usuarioServicio) {
+    public RegistroUsuarioControlador(UsuarioServicio usuarioServicio, EmailService emailService) {
         super();
         this.usuarioServicio = usuarioServicio;
+        this.emailService = emailService;
     }
 
     // Métodos HTTP
@@ -37,6 +40,12 @@ public class RegistroUsuarioControlador {
     @PostMapping
     public String registrarCuentaDeUsuario(@ModelAttribute("usuario") UsuarioRegistroDTO registroDTO) {
         usuarioServicio.guardar(registroDTO);
+
+        // Envío del correo de confirmación
+        String emailBody = "Felicitaciones, te has registrado exitosamente!";
+        emailService.sendConfirmationEmail(registroDTO.getEmail(), "Confirmación de cuenta", emailBody);
+
+
         return "redirect:/registro?exito";
     }
 }

@@ -22,7 +22,6 @@ import com.registro.usuarios.repositorio.UsuarioRepositorio;
 @Service
 public class UsuarioServicioImpl implements UsuarioServicio {
 
-
     private UsuarioRepositorio usuarioRepositorio;
 
     @Autowired
@@ -35,12 +34,7 @@ public class UsuarioServicioImpl implements UsuarioServicio {
 
     @Override
     public Usuario guardar(UsuarioRegistroDTO registroDTO) {
-        Usuario usuario = new Usuario(
-                registroDTO.getNombre(),
-                registroDTO.getApellido(),
-                registroDTO.getEmail(),
-                passwordEncoder.encode(registroDTO.getPassword()),
-                Arrays.asList(new Rol("ROLE_USER")));
+        Usuario usuario = convertirADominio(registroDTO);
         return usuarioRepositorio.save(usuario);
     }
 
@@ -71,5 +65,15 @@ public class UsuarioServicioImpl implements UsuarioServicio {
     public Usuario buscarUsuarioPorId(Long idUsuario) {
         return usuarioRepositorio.findById(idUsuario)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+    }
+
+    private Usuario convertirADominio(UsuarioRegistroDTO registroDTO) {
+        Usuario usuario = new Usuario();
+        usuario.setNombre(registroDTO.getNombre());
+        usuario.setApellido(registroDTO.getApellido());
+        usuario.setEmail(registroDTO.getEmail());
+        usuario.setPassword(passwordEncoder.encode(registroDTO.getPassword()));
+        usuario.setRoles(Arrays.asList(new Rol("ROLE_USER")));
+        return usuario;
     }
 }

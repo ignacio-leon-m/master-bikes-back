@@ -27,8 +27,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#" th:href="@{/registro}">Registro</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/bicicleta}">Administración</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Administración
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" th:href="@{/bicicleta}">Agregar bicicletas</a></li>
+                        <li><a class="dropdown-item" href="#" th:href="@{/reportes}">Reportes</a></li>
+                    </ul>
                 </li>
             </ul>
             <ul class="navbar-nav nav-underline ms-auto">
